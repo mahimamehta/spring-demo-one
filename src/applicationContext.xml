@@ -15,6 +15,9 @@
     <bean id="myFortune"
      class="com.demo.springdemo.HappyFortuneService">
     </bean>
+
+    <bean id="randomFortune"
+          class="com.demo.springdemo.RandomFortuneService"></bean>
     <bean id="myCoach"
           class="com.demo.springdemo.TrackCoach">
         <!-- set up constructor injection -->
@@ -28,6 +31,11 @@
         <!-- inject literal values -->
         <property name="emailAddress" value="${foo.email}"/>
         <property name="team" value="${foo.team}"/>
+    </bean>
+
+    <bean id="golfCoach"
+          class="com.demo.springdemo.GolfCoach">
+        <constructor-arg ref="randomFortune"/>
     </bean>
 </beans>
 
