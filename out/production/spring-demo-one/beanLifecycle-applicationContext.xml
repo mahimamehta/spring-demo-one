@@ -13,13 +13,27 @@
      class="com.demo.springdemo.HappyFortuneService">
     </bean>
 
-    <!-- changing the scope of the bean to prototype-->
+    <!-- init and destroy methods for default scoped beans (singleton) -->
     <bean id="myCoach"
           class="com.demo.springdemo.TrackCoach"
+          init-method="doMyStartupStuff"
+          destroy-method="doMyCleanupStuff">
+        <!-- set up constructor injection -->
+        <constructor-arg ref="myFortune"></constructor-arg>
+    </bean>
+
+    <!-- init method for prototype scoped beans (using DisposableBean) -->
+    <bean id="khoKhoCoach"
+          class="com.demo.springdemo.KhoKhoCoach"
+          init-method="doMyStartupStuff"
+          destroy-method="destroy"
           scope="prototype">
         <!-- set up constructor injection -->
         <constructor-arg ref="myFortune"></constructor-arg>
     </bean>
+
+    <bean id="CustomBeanProcessor"
+          class="com.demo.springdemo.CustomBeanProcessor"/>
 
 </beans>
 
